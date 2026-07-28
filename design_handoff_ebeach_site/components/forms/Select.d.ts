@@ -1,0 +1,11 @@
+/** Underline select. */
+export interface SelectOption { value: string; label: string }
+export interface SelectProps {
+  label?: string;
+  value?: string;
+  onChange?: (value: string) => void;
+  options?: SelectOption[];
+  onDark?: boolean;
+  id?: string;
+}
+export declare function Select(props: SelectProps): JSX.Element;

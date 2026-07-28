@@ -1,0 +1,180 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 60;
+  height: var(--header-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--gutter);
+  transition: color var(--dur-slow) var(--ease-tide);
+}
+
+/* The hero product passes behind the header at full bleed — this keeps the
+   lockup legible without a solid bar. */
+.protection {
+  position: absolute;
+  inset: 0 0 -40px 0;
+  pointer-events: none;
+  transition: background var(--dur-slow) var(--ease-tide);
+}
+
+.brand {
+  position: relative;
+  border: none;
+}
+
+.nav {
+  position: relative;
+  display: flex;
+  gap: var(--sp-6);
+}
+
+.nav a {
+  font: var(--type-label);
+  font-family: var(--font-body);
+  letter-spacing: var(--tr-label);
+  text-transform: uppercase;
+  color: inherit;
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--dur-fast) var(--ease-tide), color var(--dur-fast) var(--ease-tide);
+}
+
+.nav a:hover {
+  color: inherit;
+  border-bottom-color: currentColor;
+}
+
+.bag {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: inherit;
+  font: var(--type-label);
+  font-family: var(--font-body);
+  letter-spacing: var(--tr-label);
+  text-transform: uppercase;
+  padding: var(--sp-2);
+}
+
+.count {
+  min-width: 20px;
+  height: 20px;
+  border-radius: var(--r-pill);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--sun-500);
+  color: var(--sea-900);
+  font-size: 11px;
+  font-weight: var(--fw-semibold);
+}
+
+@media (max-width: 860px) {
+  .nav { display: none; }
+}
+
+/* ── Bag drawer ───────────────────────────────────────────────────────── */
+
+.scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  background: rgba(6, 34, 45, 0.5);
+  transition: opacity var(--dur-base) var(--ease-tide);
+}
+
+.drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(420px, 92vw);
+  z-index: 100;
+  background: var(--sea-900);
+  color: var(--text-on-dark);
+  padding: var(--sp-7);
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--dur-slow) var(--ease-tide);
+}
+
+.drawerHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--sp-7);
+}
+
+.drawerLabel {
+  font: var(--type-label);
+  font-family: var(--font-body);
+  letter-spacing: var(--tr-label);
+  text-transform: uppercase;
+  color: var(--text-on-dark-muted);
+}
+
+.drawerList {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.line {
+  display: flex;
+  gap: var(--sp-4);
+  padding: var(--sp-4) 0;
+  border-bottom: 1px solid var(--border-hairline-dark);
+}
+
+.lineSwatch {
+  width: 64px;
+  height: 48px;
+  border-radius: var(--r-md);
+  flex: 0 0 auto;
+}
+
+.lineName {
+  font-family: var(--font-display);
+  font-weight: var(--fw-semibold);
+}
+
+.lineMeta {
+  font-size: var(--fs-caption);
+  color: var(--text-on-dark-muted);
+}
+
+.remove {
+  background: none;
+  border: none;
+  padding: 0;
+  margin-top: 6px;
+  cursor: pointer;
+  color: var(--text-on-dark-muted);
+  font-family: var(--font-body);
+  font-size: 11px;
+  text-decoration: underline;
+}
+
+.drawerFoot {
+  padding-top: var(--sp-5);
+}
+
+.drawerTotal {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: var(--sp-5);
+}
+
+.drawerTotalValue {
+  font-family: var(--font-display);
+  font-weight: var(--fw-display);
+  font-size: 24px;
+  letter-spacing: var(--tr-display);
+  word-spacing: var(--ws-display);
+}

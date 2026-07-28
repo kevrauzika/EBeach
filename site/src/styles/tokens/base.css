@@ -1,0 +1,27 @@
+/* Minimal element defaults so any consumer page inherits the brand voice. */
+*, *::before, *::after { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--surface-base);
+  color: var(--text-body);
+  font: var(--type-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+h1, h2, h3, h4 { font-family: var(--font-display); color: var(--text-strong); margin: 0; letter-spacing: var(--tr-display); word-spacing: var(--ws-display); line-height: var(--lh-title); text-wrap: balance; }
+h1 { font: var(--type-display-l); letter-spacing: var(--tr-display-xl); word-spacing: var(--ws-display-xl); }
+h2 { font: var(--type-display-m); }
+h3 { font: var(--type-title); letter-spacing: var(--tr-title); word-spacing: var(--ws-title); }
+p { margin: 0 0 1em; text-wrap: pretty; }
+a { color: var(--sea-700); text-decoration: none; border-bottom: 1px solid rgba(14,92,115,0.32); transition: color var(--dur-fast) var(--ease-tide), border-color var(--dur-fast) var(--ease-tide); }
+a:hover { color: var(--sun-500); border-bottom-color: var(--sun-500); }
+:where(.on-dark) a { color: var(--sand-300); border-bottom-color: rgba(228,201,160,0.4); }
+:where(.on-dark) a:hover { color: var(--sun-400); border-bottom-color: var(--sun-400); }
+::selection { background: var(--sun-400); color: var(--sea-900); }
+:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 3px; }
+
+/* Section eyebrow / label convention */
+.eb-label { font: var(--type-label); letter-spacing: var(--tr-label); text-transform: uppercase; color: var(--text-muted); }
+
+/* Global sand grain — add <div class="eb-grain"></div> once per page */
+.eb-grain { position: fixed; inset: 0; pointer-events: none; z-index: 9999; opacity: var(--grain-opacity); background-image: var(--grain-url); mix-blend-mode: multiply; }

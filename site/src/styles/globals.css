@@ -1,0 +1,47 @@
+/* Single entry point — mirrors the handoff's styles.css, plus site-level rules only.
+   Never hardcode a value here that belongs in tokens/. */
+@import url("./tokens/fonts.css");
+@import url("./tokens/colors.css");
+@import url("./tokens/typography.css");
+@import url("./tokens/spacing.css");
+@import url("./tokens/effects.css");
+@import url("./tokens/motion.css");
+@import url("./tokens/base.css");
+
+html {
+  scrollbar-width: thin;
+  /* Lenis drives scrolling; native smooth would fight it. */
+  scroll-behavior: auto;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+/* Lenis */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+/* Skip link — first tab stop, invisible until focused. */
+.eb-skip {
+  position: fixed;
+  top: var(--sp-3);
+  left: var(--sp-3);
+  z-index: 200;
+  padding: var(--sp-3) var(--sp-5);
+  border: none;
+  border-radius: var(--r-pill);
+  background: var(--sea-900);
+  color: var(--sand-050);
+  font: var(--type-label);
+  font-family: var(--font-body);
+  letter-spacing: var(--tr-label);
+  text-transform: uppercase;
+  transform: translateY(-200%);
+  transition: transform var(--dur-fast) var(--ease-tide);
+}
+.eb-skip:focus-visible { transform: translateY(0); }
+
+/* Section seams are hard edges — 0 radius, per the brand. */
+section { position: relative; }

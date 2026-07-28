@@ -1,0 +1,39 @@
+<!-- @dsCard group="Components" viewport="700x330" name="Core" subtitle="Buttons, icon buttons, badges, tags, section labels" -->
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/lucide@0.454.0/dist/umd/lucide.js"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>html,body{margin:0}body{background:var(--surface-raised);padding:26px 28px;font-family:var(--font-body)}.row{display:flex;flex-wrap:wrap;gap:16px;align-items:center}.cap{font-size:10px;font-family:var(--font-mono);color:var(--text-muted);letter-spacing:.04em;margin:0 0 10px}</style></head><body><div id="root"></div>
+<script type="text/babel">
+const NS = window.EBEACHDesignSystem_3fff58;
+
+const { Button, IconButton, Badge, Tag, SectionLabel, Icon } = NS;
+function Card(){
+  const [tag,setTag]=React.useState('mare');
+  return <div style={{display:'grid',gap:22}}>
+    <div><p className="cap">Button — variants</p><div className="row">
+      <Button variant="solid">Comprar</Button>
+      <Button variant="sea">Ver lentes</Button>
+      <Button variant="outline">Coleções</Button>
+      <Button variant="ghost">Saiba mais</Button>
+      <Button variant="solid" disabled>Esgotado</Button>
+    </div></div>
+    <div><p className="cap">Button — sizes + icon + magnetic</p><div className="row">
+      <Button size="sm">Pequeno</Button>
+      <Button size="md" iconAfter={<Icon name="arrow-right" size={16}/>}>Médio</Button>
+      <Button size="lg" magnetic>Grande magnético</Button>
+    </div></div>
+    <div className="row" style={{gap:26}}>
+      <div><p className="cap">IconButton</p><div className="row"><IconButton name="arrow-left" label="Anterior"/><IconButton name="arrow-right" label="Próximo"/><IconButton name="shopping-bag" label="Sacola" tone="sun"/></div></div>
+      <div><p className="cap">Badge</p><div className="row"><Badge tone="sun">Novo</Badge><Badge tone="sea">Polarizada</Badge><Badge tone="sand">Limitada</Badge><Badge tone="outline">Esgotado</Badge></div></div>
+    </div>
+    <div className="row" style={{gap:26}}>
+      <div><p className="cap">Tag</p><div className="row">{['mare','duna','sol','recife'].map(t=><Tag key={t} active={tag===t} onClick={()=>setTag(t)}>{t}</Tag>)}</div></div>
+      <div><p className="cap">SectionLabel</p><SectionLabel index={3}>Anatomia</SectionLabel></div>
+    </div>
+  </div>;
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<Card/>);
+</script></body></html>

@@ -1,0 +1,65 @@
+/* E-BEACH color system — sol · mar · areia */
+:root {
+  /* Sand */
+  --sand-050: #FDFCF9; /* Espuma / foam */
+  --sand-100: #F5E9D7; /* Areia clara — base surface */
+  --sand-200: #EEDCC2;
+  --sand-300: #E4C9A0; /* Areia quente */
+  --sand-400: #CFAE7F;
+
+  /* Sun */
+  --sun-300: #FFC46B;
+  --sun-400: #F5A623; /* Sol */
+  --sun-500: #FF8A3D; /* Sol intenso */
+  --sun-600: #E0701F;
+
+  /* Sky — only used by the hero's noon-to-sand transition */
+  --sky-100: #E8F3EC; /* Névoa */
+  --sky-200: #BFE9EE; /* Céu de meio-dia */
+
+  /* Sea */
+  --sea-200: #7FD3CE;
+  --sea-300: #4CBAB4;
+  --sea-400: #2AA7A0; /* Mar raso */
+  --sea-600: #147F86;
+  --sea-700: #0E5C73; /* Mar profundo */
+  --sea-900: #06222D; /* Abissal */
+
+  /* Ink neutrals (logo black + supporting greys) */
+  --ink-900: #0A0A0A;
+  --ink-700: #2C2E2E;
+  --ink-500: #5E635F;
+  --ink-300: #9A9F98;
+
+  /* ---- Semantic aliases ---- */
+  --surface-base: var(--sand-100);
+  --surface-raised: var(--sand-050);
+  --surface-warm: var(--sand-300);
+  --surface-deep: var(--sea-900);
+  --surface-sea: var(--sea-700);
+  --surface-inverse: var(--sea-900);
+
+  --text-strong: var(--sea-900);
+  --text-body: var(--ink-700);
+  --text-muted: var(--ink-500);
+  --text-on-dark: var(--sand-050);
+  --text-on-dark-muted: rgba(253, 252, 249, 0.62);
+  --text-accent: var(--sun-500);
+
+  --accent-primary: var(--sun-500);
+  --accent-primary-hover: var(--sun-600);
+  --accent-secondary: var(--sea-400);
+  --accent-secondary-hover: var(--sea-600);
+
+  --border-hairline: rgba(10, 10, 10, 0.14);
+  --border-hairline-dark: rgba(253, 252, 249, 0.20);
+  --border-strong: var(--sea-900);
+
+  --focus-ring: var(--sea-400);
+
+  /* Section transition gradients (the only sanctioned gradients) */
+  --grad-sand-to-sea: linear-gradient(180deg, var(--sand-100) 0%, var(--sand-300) 34%, var(--sea-400) 100%);
+  --grad-sea-to-abyss: linear-gradient(180deg, var(--sea-400) 0%, var(--sea-700) 48%, var(--sea-900) 100%);
+  --grad-sunset: linear-gradient(180deg, var(--sun-400) 0%, var(--sun-500) 42%, var(--sea-700) 100%);
+  --grad-noon-sky: linear-gradient(180deg, var(--sky-200) 0%, var(--sand-100) 100%);
+}

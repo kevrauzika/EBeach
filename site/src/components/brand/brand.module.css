@@ -1,0 +1,75 @@
+/* Looping brand animations. Kept in CSS (not inline) so prefers-reduced-motion
+   can switch them off without a JS branch. */
+
+.marquee {
+  overflow: hidden;
+  width: 100%;
+  font-family: var(--font-body);
+}
+
+.marqueeTrack {
+  display: flex;
+  width: max-content;
+  animation: eb-marquee var(--mq-speed, 42s) linear infinite;
+}
+
+.marqueeRow {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-7);
+  padding-right: var(--sp-7);
+  flex: 0 0 auto;
+}
+
+@keyframes eb-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* Scroll cue — a thin line whose fill drifts downward on a loop. */
+.cue {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-3);
+}
+
+.cueTrack {
+  position: relative;
+  width: 1px;
+  height: 56px;
+  background: currentColor;
+  opacity: 0.3;
+  overflow: hidden;
+}
+
+.cueFill {
+  position: absolute;
+  left: 0;
+  width: 1px;
+  height: 22px;
+  animation: eb-cue-drift 1.9s var(--ease-swell) infinite;
+}
+
+@keyframes eb-cue-drift {
+  0% { transform: translateY(-24px); }
+  100% { transform: translateY(56px); }
+}
+
+/* Wave seam between a light section and the abyssal footer. */
+.waveGroup {
+  animation: eb-wave var(--wave-speed, 14s) linear infinite;
+}
+
+@keyframes eb-wave {
+  from { transform: translateX(0); }
+  to { transform: translateX(-1440px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marqueeTrack,
+  .cueFill,
+  .waveGroup {
+    animation: none;
+  }
+}

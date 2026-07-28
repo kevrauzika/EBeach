@@ -1,0 +1,553 @@
+/* Section layout. Values come from tokens only — nothing hardcoded here that
+   exists in tokens/. Mobile-first: pins become scroll-snap, parallax halves. */
+
+.wrap {
+  max-width: var(--maxw-page);
+  margin-inline: auto;
+}
+
+/* ── 01 Hero ──────────────────────────────────────────────────────────── */
+
+.heroTrack {
+  height: 360vh;
+  position: relative;
+}
+
+.heroStage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.heroWord {
+  position: absolute;
+  margin: 0;
+  width: 100%;
+  padding-inline: var(--gutter);
+  text-align: center;
+  font-family: var(--font-display);
+  font-weight: var(--fw-display);
+  font-size: var(--fs-wordmark);
+  letter-spacing: var(--tr-wordmark);
+  word-spacing: var(--ws-wordmark);
+  line-height: 0.82;
+  color: var(--sea-900);
+  text-transform: uppercase;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.heroProduct {
+  position: relative;
+  width: min(720px, 88vw);
+  will-change: transform;
+}
+
+.heroCopy {
+  position: absolute;
+  left: var(--gutter);
+  bottom: var(--sp-8);
+  max-width: 340px;
+}
+
+.heroCopy p {
+  margin: 0;
+  font-size: var(--fs-body-l);
+  color: var(--sea-900);
+  line-height: 1.5;
+}
+
+.heroMeta {
+  position: absolute;
+  right: var(--gutter);
+  bottom: var(--sp-8);
+  text-align: right;
+}
+
+.heroCue {
+  position: absolute;
+  bottom: var(--sp-7);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@media (max-width: 860px) {
+  .heroTrack { height: 280vh; }
+  .heroCopy { max-width: none; right: var(--gutter); bottom: var(--sp-9); }
+  .heroCopy p { font-size: var(--fs-body); }
+  .heroMeta { display: none; }
+}
+
+/* Pinning is a motion effect: without it the tall tracks are just dead scroll. */
+@media (prefers-reduced-motion: reduce) {
+  .heroTrack,
+  .anatomyTrack {
+    height: 100vh;
+    height: 100svh;
+  }
+
+  .heroStage,
+  .anatomyStage {
+    position: relative;
+  }
+}
+
+/* ── 02 Manifesto ─────────────────────────────────────────────────────── */
+
+.manifesto {
+  background: var(--sand-100);
+  padding: var(--section-y) var(--gutter);
+}
+
+.manifestoText {
+  max-width: 18ch;
+  margin: var(--sp-7) 0 0;
+  font-family: var(--font-display);
+  font-size: var(--fs-display-m);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tr-display);
+  word-spacing: var(--ws-display);
+  line-height: 1.08;
+  color: var(--text-strong);
+}
+
+.word {
+  display: inline-block;
+  margin-right: 0.28em;
+  transition:
+    opacity var(--dur-slow) var(--ease-drift),
+    transform var(--dur-slow) var(--ease-drift);
+}
+
+/* ── 03 Anatomy ───────────────────────────────────────────────────────── */
+
+.anatomyTrack {
+  height: 400vh;
+  background: var(--sand-200);
+  position: relative;
+}
+
+.anatomyStage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+  padding: 0 var(--gutter);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.anatomyLabelTop {
+  position: absolute;
+  top: calc(var(--header-h) + var(--sp-6));
+  left: var(--gutter);
+}
+
+.anatomyProduct {
+  width: min(620px, 78vw);
+}
+
+.anatomyPart {
+  position: absolute;
+  top: var(--top);
+  max-width: 260px;
+  transition:
+    opacity var(--dur-base) var(--ease-tide),
+    transform var(--dur-base) var(--ease-tide);
+}
+
+.anatomyPart[data-side='left'] {
+  left: var(--gutter);
+  text-align: right;
+}
+
+.anatomyPart[data-side='right'] {
+  right: var(--gutter);
+  text-align: left;
+}
+
+.anatomyConnector {
+  display: block;
+  overflow: visible;
+}
+
+.anatomyPartTitle {
+  font-family: var(--font-display);
+  font-weight: var(--fw-semibold);
+  font-size: 18px;
+  letter-spacing: var(--tr-title);
+  word-spacing: var(--ws-title);
+  color: var(--text-strong);
+}
+
+.anatomyPartBody {
+  margin: 6px 0 0;
+  font-size: var(--fs-caption);
+  line-height: 1.55;
+  color: var(--text-muted);
+}
+
+.anatomySpecs {
+  position: absolute;
+  right: var(--gutter);
+  bottom: var(--sp-7);
+  width: 260px;
+}
+
+@media (max-width: 900px) {
+  .anatomyTrack { height: 320vh; }
+  .anatomyProduct { width: 86vw; }
+  .anatomyPart { max-width: 52vw; top: var(--top-mobile); }
+  .anatomyPartBody { display: none; }
+  /* No room to draw a callout to the product — the label stands on its own. */
+  .anatomyConnector { display: none; }
+  .anatomySpecs { display: none; }
+}
+
+/* ── 04 Collections ───────────────────────────────────────────────────── */
+
+.collectionsTrack {
+  height: 360vh;
+  background: var(--sea-700);
+  position: relative;
+}
+
+.collectionsStage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.collectionsHead {
+  padding: 0 var(--gutter) var(--sp-6);
+}
+
+.collectionsRail {
+  display: flex;
+  gap: var(--sp-5);
+  padding: 0 var(--gutter);
+  width: max-content;
+  will-change: transform;
+}
+
+.collectionsRail > * {
+  width: 30vw;
+  min-width: 300px;
+}
+
+/* Below the pin breakpoint the whole thing becomes a snap carousel. */
+.collectionsFlat {
+  background: var(--sea-700);
+  padding: var(--section-y) 0;
+}
+
+.collectionsSnap {
+  display: flex;
+  gap: var(--sp-4);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 0 var(--gutter);
+  scrollbar-width: none;
+}
+
+.collectionsSnap::-webkit-scrollbar { display: none; }
+
+.collectionsSnap > * {
+  flex: 0 0 76%;
+  scroll-snap-align: center;
+}
+
+/* ── 05 Configurator ──────────────────────────────────────────────────── */
+
+.config {
+  background: var(--sand-100);
+  padding: var(--section-y) var(--gutter);
+}
+
+.configGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(300px, 0.75fr);
+  gap: var(--sp-9);
+  align-items: center;
+  margin-top: var(--sp-7);
+}
+
+.configStage {
+  background: var(--sand-200);
+  border-radius: var(--r-xl);
+  aspect-ratio: 4 / 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.configBadge {
+  position: absolute;
+  top: var(--sp-5);
+  left: var(--sp-5);
+}
+
+.configTitle {
+  font-family: var(--font-display);
+  font-size: var(--fs-display-s);
+  font-weight: var(--fw-display);
+  letter-spacing: var(--tr-display);
+  text-transform: uppercase;
+  margin: 0;
+  color: var(--text-strong);
+}
+
+.configControls {
+  display: grid;
+  gap: var(--sp-6);
+}
+
+.configTotal {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin: var(--sp-7) 0 var(--sp-5);
+  border-top: 1px solid var(--border-hairline);
+  padding-top: var(--sp-5);
+}
+
+.configPrice {
+  font-family: var(--font-display);
+  font-weight: var(--fw-display);
+  font-size: 40px;
+  letter-spacing: var(--tr-display);
+  word-spacing: var(--ws-display);
+  color: var(--text-strong);
+}
+
+@media (max-width: 900px) {
+  .configGrid {
+    grid-template-columns: 1fr;
+    gap: var(--sp-7);
+  }
+}
+
+/* ── 06 Gallery ───────────────────────────────────────────────────────── */
+
+.gallery {
+  background: var(--sand-050);
+  padding: var(--section-y) var(--gutter);
+  position: relative;
+}
+
+.galleryGrid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--sp-5);
+  row-gap: var(--sp-8);
+  margin-top: var(--sp-7);
+}
+
+.shot {
+  margin: 0;
+  grid-column: var(--col);
+}
+
+.shotFrame {
+  overflow: hidden;
+  border-radius: var(--r-lg);
+}
+
+.shotFrame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.shotCaption {
+  margin-top: var(--sp-3);
+  font: var(--type-label);
+  font-family: var(--font-body);
+  letter-spacing: var(--tr-label);
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.dragCursor {
+  position: fixed;
+  z-index: 80;
+  pointer-events: none;
+  width: 84px;
+  height: 84px;
+  border-radius: var(--r-pill);
+  background: var(--sun-500);
+  color: var(--sea-900);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-body);
+  font-weight: var(--fw-medium);
+  font-size: 10px;
+  letter-spacing: var(--tr-label);
+  text-transform: uppercase;
+}
+
+@media (max-width: 900px) {
+  .galleryGrid { grid-template-columns: repeat(6, 1fr); }
+  .shot { grid-column: 1 / -1; }
+  .shot:nth-child(even) { grid-column: 2 / -1; }
+}
+
+/* ── 07 Proof ─────────────────────────────────────────────────────────── */
+
+.proof {
+  background: var(--sand-100);
+  padding: var(--section-y) 0;
+}
+
+.proofHead {
+  padding: 0 var(--gutter) var(--sp-6);
+}
+
+.quote {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 14px;
+}
+
+.quoteText {
+  font-family: var(--font-display);
+  font-weight: var(--fw-semibold);
+  font-size: clamp(1.1rem, 2.2vw, 1.7rem);
+  letter-spacing: var(--tr-title);
+  word-spacing: var(--ws-title);
+  color: var(--text-strong);
+}
+
+.quoteWho {
+  font: var(--type-label);
+  font-family: var(--font-body);
+  letter-spacing: var(--tr-label);
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* ── 08 CTA + footer ──────────────────────────────────────────────────── */
+
+.footer {
+  background: var(--sea-900);
+  color: var(--text-on-dark);
+}
+
+.footerSeam {
+  background: var(--sand-100);
+}
+
+.footerCta {
+  position: relative;
+  min-height: 58vh;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  margin-bottom: var(--sp-9);
+}
+
+.footerPlate {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.55;
+}
+
+.footerScrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(6, 34, 45, 0.55) 0%, rgba(6, 34, 45, 0.2) 45%, var(--sea-900) 100%);
+}
+
+.footerCtaTitle {
+  position: relative;
+  padding: 0 var(--gutter) var(--sp-8);
+  font-family: var(--font-display);
+  font-size: var(--fs-display-l);
+  font-weight: var(--fw-display);
+  letter-spacing: var(--tr-display-xl);
+  word-spacing: var(--ws-display-xl);
+  line-height: var(--lh-display);
+  text-transform: uppercase;
+  color: var(--text-on-dark);
+  margin: 0;
+  max-width: 14ch;
+}
+
+.footerBody {
+  padding: 0 var(--gutter) var(--section-y);
+}
+
+.footerGrid {
+  display: grid;
+  grid-template-columns: minmax(280px, 1fr) repeat(3, auto);
+  gap: var(--sp-9);
+  padding-bottom: var(--sp-9);
+  border-bottom: 1px solid var(--border-hairline-dark);
+}
+
+.footerColTitle {
+  font: var(--type-label);
+  font-family: var(--font-body);
+  letter-spacing: var(--tr-label);
+  text-transform: uppercase;
+  color: var(--text-on-dark-muted);
+  margin-bottom: var(--sp-4);
+}
+
+.footerList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--sp-3);
+}
+
+/* Hover is a colour shift, not an underline that is always on. */
+.footerList a {
+  border-bottom-color: transparent;
+}
+
+.footerList a:hover {
+  border-bottom-color: currentColor;
+}
+
+.footerBottom {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--sp-6);
+  padding-top: var(--sp-7);
+}
+
+/* The lockup is the largest thing on the page; it must not run into the gutter. */
+.footerBottom img {
+  height: clamp(36px, 11vw, 64px);
+}
+
+@media (max-width: 900px) {
+  .footerGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--sp-7);
+  }
+  .footerGrid > *:first-child { grid-column: 1 / -1; }
+  .footerBottom { flex-direction: column; align-items: flex-start; }
+}

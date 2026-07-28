@@ -1,0 +1,37 @@
+<!-- @dsCard group="Components" viewport="700x380" name="Forms" subtitle="Underline fields, select, checkbox, switch, swatches" -->
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/lucide@0.454.0/dist/umd/lucide.js"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>html,body{margin:0}body{background:var(--surface-raised);padding:26px 28px;font-family:var(--font-body)}.row{display:flex;flex-wrap:wrap;gap:16px;align-items:center}.cap{font-size:10px;font-family:var(--font-mono);color:var(--text-muted);letter-spacing:.04em;margin:0 0 10px}</style></head><body><div id="root"></div>
+<script type="text/babel">
+const NS = window.EBEACHDesignSystem_3fff58;
+
+const { Input, Select, Checkbox, Switch, SwatchPicker } = NS;
+function Card(){
+  const [v,setV]=React.useState('voce@email.com');
+  const [c,setC]=React.useState(true);
+  const [s,setS]=React.useState(true);
+  const [f,setF]=React.useState('abissal');
+  return <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'28px 40px'}}>
+    <div><p className="cap">Input</p><Input id="a" label="E-mail" value={v} onChange={setV}/></div>
+    <div><p className="cap">Input — error</p><Input id="b" label="CEP" value="0000" onChange={()=>{}} error="CEP inválido"/></div>
+    <div><p className="cap">Select</p><Select id="c" label="Tamanho" options={[{value:'p',label:'Pequeno'},{value:'m',label:'Médio'},{value:'g',label:'Grande'}]}/></div>
+    <div><p className="cap">Checkbox · Switch</p><div style={{display:'grid',gap:14}}>
+      <Checkbox id="d" label="Quero receber novidades" checked={c} onChange={setC}/>
+      <Switch id="e" checked={s} onChange={setS} label="Lente polarizada"/>
+    </div></div>
+    <div style={{gridColumn:'1 / -1'}}><p className="cap">SwatchPicker</p>
+      <SwatchPicker label="Armação" value={f} onChange={setF} options={[
+        {value:'abissal',label:'Abissal',swatch:'#06222D'},
+        {value:'areia',label:'Areia quente',swatch:'#E4C9A0'},
+        {value:'mar',label:'Mar raso',swatch:'#2AA7A0'},
+        {value:'ambar',label:'Âmbar',swatch:'#F5A623'},
+        {value:'espelhada',label:'Espelhada',swatch:'linear-gradient(135deg,#7FD3CE,#F5A623)'}]}/>
+    </div>
+  </div>;
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<Card/>);
+</script></body></html>

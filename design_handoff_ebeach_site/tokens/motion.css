@@ -1,0 +1,27 @@
+/* Motion: long, tide-like, never bouncy. Everything scroll-scrubbed where possible. */
+:root {
+  --ease-tide: cubic-bezier(0.22, 1, 0.36, 1); /* @kind other */   /* default out-expo-ish */
+  --ease-swell: cubic-bezier(0.65, 0, 0.35, 1); /* @kind other */  /* symmetric in-out */
+  --ease-drift: cubic-bezier(0.16, 1, 0.3, 1); /* @kind other */   /* long settle for reveals */
+  --ease-snap: cubic-bezier(0.4, 0, 0.2, 1); /* @kind other */
+
+  --dur-micro: 140ms; /* @kind other */
+  --dur-fast: 240ms; /* @kind other */
+  --dur-base: 420ms; /* @kind other */
+  --dur-slow: 720ms; /* @kind other */
+  --dur-reveal: 1100ms; /* @kind other */
+
+  --stagger: 70ms; /* @kind other */
+  --scroll-lerp: 0.085; /* @kind other */ /* Lenis inertia factor used across the site */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-micro: 1ms; /* @kind other */
+    --dur-fast: 1ms; /* @kind other */
+    --dur-base: 1ms; /* @kind other */
+    --dur-slow: 1ms; /* @kind other */
+    --dur-reveal: 1ms; /* @kind other */
+    --stagger: 0ms; /* @kind other */
+  }
+}

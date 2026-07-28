@@ -1,0 +1,38 @@
+/* E-BEACH type scale — editorial display, quiet body */
+:root {
+  --fs-display-xl: clamp(3.5rem, 14vw, 9rem); /* @kind font */
+  --fs-display-l: clamp(2.75rem, 9vw, 6rem); /* @kind font */
+  --fs-display-m: clamp(2.25rem, 6vw, 4rem); /* @kind font */
+  --fs-display-s: clamp(1.75rem, 4vw, 2.75rem); /* @kind font */
+  --fs-title: 1.5rem; /* @kind font */
+  --fs-body-l: 1.125rem; /* @kind font */
+  --fs-body: 1rem; /* @kind font */
+  --fs-body-s: 0.9375rem; /* @kind font */
+  --fs-caption: 0.8125rem; /* @kind font */
+  --fs-label: 0.6875rem; /* @kind font */
+
+  --lh-display: 0.88; /* @kind font */
+  --lh-title: 1.12; /* @kind font */
+  --lh-body: 1.6; /* @kind font */
+  --lh-tight: 1.25; /* @kind font */
+
+  --fw-body: 400; /* @kind font */
+  --fw-medium: 500; /* @kind font */
+  --fw-semibold: 600; /* @kind font */
+  --fw-display: 700; /* @kind font */
+
+  --tr-display-xl: -0.045em; /* @kind font */
+  --tr-display: -0.03em; /* @kind font */
+  --tr-title: -0.015em; /* @kind font */
+  --tr-body: 0em; /* @kind font */
+  --tr-label: 0.18em; /* @kind font */ /* eyebrows / section labels, always uppercase */
+
+  /* Composite roles */
+  --type-display-xl: var(--fw-display) var(--fs-display-xl) / var(--lh-display) var(--font-display); /* @kind font */
+  --type-display-l: var(--fw-display) var(--fs-display-l) / var(--lh-display) var(--font-display); /* @kind font */
+  --type-display-m: var(--fw-semibold) var(--fs-display-m) / var(--lh-title) var(--font-display); /* @kind font */
+  --type-title: var(--fw-semibold) var(--fs-title) / var(--lh-title) var(--font-display); /* @kind font */
+  --type-body: var(--fw-body) var(--fs-body) / var(--lh-body) var(--font-body); /* @kind font */
+  --type-body-l: var(--fw-body) var(--fs-body-l) / var(--lh-body) var(--font-body); /* @kind font */
+  --type-label: var(--fw-medium) var(--fs-label) / 1 var(--font-body); /* @kind font */
+}
