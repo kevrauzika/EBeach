@@ -4,11 +4,11 @@ import '@/styles/globals.css';
 export const metadata: Metadata = {
   title: 'E-BEACH — Óculos para a luz do Brasil',
   description:
-    'Lente polarizada UV400, acetato italiano, montagem no litoral paulista. Monte o seu: armação, lente e polarização.',
+    'Óculos E-BEACH, linhas Sport e Casual. Escolha seu modelo e finalize o pedido pelo WhatsApp.',
   icons: { icon: '/assets/mark-ink.png' },
   openGraph: {
     title: 'E-BEACH — Óculos para a luz do Brasil',
-    description: 'Lente polarizada UV400, acetato italiano, montagem no litoral paulista.',
+    description: 'Óculos E-BEACH, linhas Sport e Casual. Escolha seu modelo e finalize o pedido pelo WhatsApp.',
     locale: 'pt_BR',
     type: 'website',
   },

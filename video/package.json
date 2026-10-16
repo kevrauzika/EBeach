@@ -1,0 +1,25 @@
+{
+  "name": "ebeach-hero-reel",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "studio": "remotion studio",
+    "render": "node render.mjs ModelReel out/model-reel.mp4",
+    "render:hero": "node render.mjs HeroReel out/hero-reel.mp4",
+    "poster": "remotion still ModelReel out/model-reel-poster.jpg --frame=70 --image-format=jpeg --jpeg-quality=90",
+    "poster:hero": "remotion still HeroReel out/hero-reel-poster.jpg --frame=60 --image-format=jpeg --jpeg-quality=90",
+    "publish": "node -e \"const fs=require('fs');for(const f of fs.readdirSync('out').filter(f=>/^(hero|model)-reel(-poster)?\\.(mp4|jpg)$/.test(f)))fs.copyFileSync('out/'+f,'../site/public/assets/video/'+f)\""
+  },
+  "dependencies": {
+    "@remotion/bundler": "4.0.529",
+    "@remotion/cli": "4.0.529",
+    "@remotion/renderer": "4.0.529",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "remotion": "4.0.529"
+  },
+  "devDependencies": {
+    "@types/react": "19.0.7",
+    "typescript": "5.7.3"
+  }
+}

@@ -5,12 +5,15 @@ import {
   Check,
   X,
   ShoppingBag,
+  Plus,
+  Minus,
   type LucideProps,
 } from 'lucide-react';
 
 /* Lucide, pinned to the brand's 1.5 stroke weight so nothing drifts.
    The brand ships no glyph set — see BRAND.md › Iconography.
-   Registry is explicit: only these six glyphs are sanctioned. */
+   Registry is explicit: only these glyphs are sanctioned (plus/minus for the bag's
+   quantity stepper). */
 const GLYPHS = {
   'arrow-left': ArrowLeft,
   'arrow-right': ArrowRight,
@@ -18,6 +21,8 @@ const GLYPHS = {
   check: Check,
   x: X,
   'shopping-bag': ShoppingBag,
+  plus: Plus,
+  minus: Minus,
 } as const;
 
 export type IconName = keyof typeof GLYPHS;

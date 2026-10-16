@@ -132,11 +132,50 @@
   border-bottom: 1px solid var(--border-hairline-dark);
 }
 
-.lineSwatch {
-  width: 64px;
-  height: 48px;
+/* Cut-out on a sand field, so dark frames still read on the abyssal drawer. */
+.lineThumb {
+  width: 84px;
+  height: 64px;
   border-radius: var(--r-md);
   flex: 0 0 auto;
+  background: var(--grad-noon-sky);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+}
+
+.lineThumb img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.lineActions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: var(--sp-3);
+}
+
+.stepper {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+}
+
+.qty {
+  min-width: 2ch;
+  text-align: center;
+  font-family: var(--font-display);
+  font-weight: var(--fw-semibold);
+}
+
+.drawerNote {
+  margin: var(--sp-4) 0 0;
+  font-size: var(--fs-caption);
+  line-height: 1.5;
+  color: var(--text-on-dark-muted);
 }
 
 .lineName {

@@ -6,10 +6,8 @@ import { useBag } from './BagProvider';
 import s from './header.module.css';
 
 const LINKS: [string, string][] = [
-  ['Coleções', '#colecoes'],
-  ['Anatomia', '#anatomia'],
-  ['Configurador', '#configurador'],
-  ['Histórias', '#historias'],
+  ['Coleção', '#colecoes'],
+  ['Escolha o seu', '#escolha'],
 ];
 
 /** Is whatever sits under the header right now a dark surface? */
@@ -29,9 +27,8 @@ function useDarkBeneath() {
     window.addEventListener('scroll', probe, { passive: true });
     window.addEventListener('resize', probe);
 
-    // The hero declares itself dark or light as it is scrubbed, and under reduced
-    // motion it settles without a single scroll event — so watch the attribute
-    // itself, not just the scroll position.
+    // Sections can declare themselves dark after mount (the collection rail swaps
+    // layouts by breakpoint), so watch the attribute itself, not just scroll.
     const mo = new MutationObserver(probe);
     mo.observe(document.body, { subtree: true, attributes: true, attributeFilter: ['data-dark-section'] });
 
@@ -48,7 +45,7 @@ function useDarkBeneath() {
 /** The only fixed element on the site. */
 export function SiteHeader() {
   const dark = useDarkBeneath();
-  const { items, setOpen } = useBag();
+  const { count, setOpen } = useBag();
 
   return (
     <header className={s.header} style={{ color: dark ? 'var(--text-on-dark)' : 'var(--text-strong)' }}>
@@ -76,8 +73,8 @@ export function SiteHeader() {
 
       <button type="button" className={s.bag} onClick={() => setOpen(true)}>
         Sacola
-        <span className={s.count} aria-label={`${items.length} itens na sacola`}>
-          {items.length}
+        <span className={s.count} aria-label={`${count} ${count === 1 ? 'peça' : 'peças'} na sacola`}>
+          {count}
         </span>
       </button>
     </header>

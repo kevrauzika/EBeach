@@ -1,47 +1,51 @@
 'use client';
 
 import { createContext, useCallback, useContext, useMemo, useState } from 'react';
+import { modelById, type Model } from '@/lib/catalog';
 
-/* Trivial, local state — no store needed. This is the shape the checkout
-   endpoint should receive. */
-export type BagItem = {
-  name: string;
-  frame: string;
-  lens: string;
-  frameLabel: string;
-  lensLabel: string;
-  polarized: boolean;
-  price: number;
-};
+/* Trivial, local state — no store needed. No prices: the bag only gathers models
+   and quantities, and the order is closed on WhatsApp. */
+export type BagItem = Model & { qty: number };
 
 type BagApi = {
   items: BagItem[];
+  /** Total pieces across all lines. */
+  count: number;
   open: boolean;
-  add: (item: BagItem) => void;
-  remove: (index: number) => void;
+  add: (id: string) => void;
+  setQty: (id: string, qty: number) => void;
+  remove: (id: string) => void;
   setOpen: (v: boolean) => void;
-  total: number;
 };
 
 const Ctx = createContext<BagApi | null>(null);
 
 export function BagProvider({ children }: { children: React.ReactNode }) {
-  const [items, setItems] = useState<BagItem[]>([]);
+  const [lines, setLines] = useState<{ id: string; qty: number }[]>([]);
   const [open, setOpen] = useState(false);
 
-  const add = useCallback((item: BagItem) => {
-    setItems((b) => [...b, item]);
+  const add = useCallback((id: string) => {
+    setLines((b) =>
+      b.some((l) => l.id === id) ? b.map((l) => (l.id === id ? { ...l, qty: l.qty + 1 } : l)) : [...b, { id, qty: 1 }],
+    );
     setOpen(true);
   }, []);
 
-  const remove = useCallback((index: number) => {
-    setItems((b) => b.filter((_, i) => i !== index));
-  }, []);
+  const remove = useCallback((id: string) => setLines((b) => b.filter((l) => l.id !== id)), []);
 
-  const value = useMemo<BagApi>(
-    () => ({ items, open, add, remove, setOpen, total: items.reduce((s, i) => s + i.price, 0) }),
-    [items, open, add, remove],
+  const setQty = useCallback(
+    (id: string, qty: number) =>
+      setLines((b) => (qty < 1 ? b.filter((l) => l.id !== id) : b.map((l) => (l.id === id ? { ...l, qty } : l)))),
+    [],
   );
+
+  const value = useMemo<BagApi>(() => {
+    const items = lines.flatMap((l) => {
+      const m = modelById(l.id);
+      return m ? [{ ...m, qty: l.qty }] : [];
+    });
+    return { items, count: items.reduce((n, i) => n + i.qty, 0), open, add, setQty, remove, setOpen };
+  }, [lines, open, add, setQty, remove]);
 
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;
 }
